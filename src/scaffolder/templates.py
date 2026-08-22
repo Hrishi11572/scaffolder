@@ -11,6 +11,7 @@ if __name__ == "__main__":
 
 CPP_TEMPLATE = """\
 #include <iostream>
+using namespace std; 
 
 int main() {
     return 0;
