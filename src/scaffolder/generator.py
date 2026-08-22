@@ -2,13 +2,13 @@ from pathlib import Path
 from model import Node, NodeType
 from templates import get_template
 
-def generator(root : Node, target): 
+def generator(root : Node, target, template_dir=None): 
     root_path = Path(target)
     
     if root.type == NodeType.DIRECTORY: 
         root_path.mkdir(parents=True, exist_ok=True)
     else: 
-        template = get_template(root.name)
+        template = get_template(root.name, template_dir)
         
         if template is not None: 
             root_path.write_text(template) 
@@ -18,4 +18,4 @@ def generator(root : Node, target):
         
     for child in root.children: 
         node_path = root_path /  child.name
-        generator(child, node_path)
+        generator(child, node_path, template_dir)
