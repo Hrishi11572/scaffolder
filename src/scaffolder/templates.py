@@ -41,5 +41,5 @@ def get_template(filename, template_dir=None):
 
 if __name__ == "__main__": 
     
-    st = get_template("main.py")
+    st = get_template("main.cpp", template_dir="../../templates")
     print(st)
