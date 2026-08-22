@@ -17,15 +17,26 @@ int main() {
 }
 """
 
-TEMPLATES = {
-    ".py": PYTHON_TEMPLATE,
-    ".cpp": CPP_TEMPLATE,
-    ".hpp": CPP_TEMPLATE,
-}
 
-def get_template(filename):
-    suffix = Path(filename).suffix
-    return TEMPLATES.get(suffix)
+def get_template(filename, template_dir=None):
+    TEMPLATES = {
+        ".py": PYTHON_TEMPLATE,
+        ".cpp": CPP_TEMPLATE,
+        ".hpp": CPP_TEMPLATE,
+    }   
+    
+    suffix = Path(filename).suffix 
+    
+    if template_dir is None: 
+        return TEMPLATES.get(suffix)
+
+    template_dir = Path(template_dir)
+
+    for template_file in template_dir.iterdir():
+        if template_file.suffix == suffix:
+            return template_file.read_text()
+
+    return None
 
 
 if __name__ == "__main__": 
