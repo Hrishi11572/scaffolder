@@ -4,7 +4,9 @@ from .generator import generator
 from .parser import parse_structure
 from pathlib import Path 
 
+app = typer.Typer()
 
+@app.command()
 def build(
     markdown_file: str,
     target: str,
@@ -56,4 +58,5 @@ def build(
     generator(root, target, templates)
 
 if __name__ == "__main__":
-    typer.run(build)
+    # typer.run(build)
+    app()

@@ -1,5 +1,6 @@
 from scaffolder.parser import parse_structure
 from scaffolder.model import NodeType
+from scaffolder.generator import generator
 import pytest 
 
 
@@ -110,3 +111,23 @@ project/
 
     assert src.children[1].name == "main.py"
     assert tests.children[0].name == "test_main.py"
+    
+def test_custom_template(tmp_path):
+    template_dir = tmp_path / "templates"
+    template_dir.mkdir()
+
+    (template_dir / ".py").write_text("# CUSTOM TEMPLATE\n")
+
+    text = """\
+project/
+    main.py
+"""
+
+    root = parse_structure(text)
+
+    generator(root, tmp_path / "output", template_dir)
+
+    generated = tmp_path / "output" / "project" / "main.py"
+
+    assert generated.is_file()
+    assert generated.read_text() == "# CUSTOM TEMPLATE\n"
