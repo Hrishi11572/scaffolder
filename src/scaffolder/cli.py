@@ -5,7 +5,12 @@ from parser import parse_structure
 from pathlib import Path 
 
 
-def build(markdown_file: str, target: str, templates : str | None = None):
+def build(
+    markdown_file: str,
+    target: str,
+    templates : str | None = None,
+    dry_run : bool = False
+):
     
     markdown_path = Path(markdown_file)
     
@@ -39,6 +44,11 @@ def build(markdown_file: str, target: str, templates : str | None = None):
         raise typer.BadParameter(
             "Could not parse the directory structure."
         )
+    
+    
+    if dry_run: 
+        root.print_tree()
+        return 
     
     generator(root, target, templates)
 
