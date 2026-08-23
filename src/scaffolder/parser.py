@@ -17,8 +17,8 @@ def parse_structure(text):
     
     for line in lines: 
         if line.strip(): 
-            name = line.lstrip()
-            indent = len(line) - len(name)
+            indent = len(line) - len(line.lstrip())
+            name = line.strip()
             node_type = NodeType.FILE if name[-1] != '/' else NodeType.DIRECTORY
             node = Node(name=name.rstrip("/"), type= node_type)
             
