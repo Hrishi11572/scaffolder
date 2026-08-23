@@ -31,11 +31,11 @@ def get_template(filename, template_dir=None):
     if template_dir is None: 
         return TEMPLATES.get(suffix)
 
-    template_dir = Path(template_dir)
-
-    for template_file in template_dir.iterdir():
-        if template_file.suffix == suffix:
-            return template_file.read_text()
+    if template_dir is not None: 
+        template_path = Path(template_dir) / suffix 
+        
+        if template_path.exists(): 
+            return template_path.read_text()
 
     return None
 
