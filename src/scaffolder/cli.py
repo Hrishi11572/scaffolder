@@ -1,4 +1,4 @@
-import typer 
+import typer  # type: ignore
 from extractor import extract_structure
 from generator import generator
 from parser import parse_structure
@@ -18,6 +18,13 @@ def build(markdown_file: str, target: str, templates : str | None = None):
     markdown = markdown_path.read_text()
     
     structure = extract_structure(markdown)
+    
+    # error handling here 
+    if not structure.strip():
+        raise typer.BadParameter(
+            "No directory structure found in the Markdown file."
+        )
+        
     root = parse_structure(structure)
     
     # error handling here 
