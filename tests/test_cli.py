@@ -76,3 +76,38 @@ project/
     assert existing.read_text() == "do not delete"
 
     assert (output / "project" / "main.py").is_file()
+    
+def test_non_empty_target_without_force_fails(tmp_path):
+    readme = tmp_path / "README.md"
+    output = tmp_path / "output"
+
+    readme.write_text("""\
+# Directory Structure
+
+project/
+    main.py
+""")
+
+    output.mkdir()
+    (output / "existing.txt").write_text("keep me")
+
+    result = runner.invoke(
+        app,
+        [str(readme), str(output)]
+    )
+
+    assert result.exit_code != 0
+    assert (output / "existing.txt").is_file()
+    assert not (output / "project").exists()
+    
+def test_missing_markdown_file(tmp_path):
+    missing_file = tmp_path / "README.md"
+    output = tmp_path / "output"
+
+    result = runner.invoke(
+        app,
+        [str(missing_file), str(output)]
+    )
+
+    assert result.exit_code != 0
+    assert not output.exists()

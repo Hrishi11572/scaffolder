@@ -2,3 +2,6 @@ __pycache__/
 projenv/
 .pytest_cache/
 *.egg-info/
+testenv/
+dist/
+.coverage 
