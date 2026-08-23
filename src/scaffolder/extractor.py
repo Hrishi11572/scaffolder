@@ -1,4 +1,4 @@
-from parser import parse_structure
+from .parser import parse_structure
 
 def find_indent(s : str):
     return len(s) - len(s.lstrip())

@@ -1,6 +1,6 @@
 from pathlib import Path 
-from model import Node, NodeType
-from templates import get_template
+from .model import Node, NodeType
+from .templates import get_template
 
 def generator(root : Node, target, template_dir=None): 
     root_path = Path(target)

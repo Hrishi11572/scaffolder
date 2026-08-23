@@ -1,4 +1,4 @@
-from templates import get_template
+from scaffolder.templates import get_template
 
 print(get_template("main.py"))
 print(get_template("main.cpp"))

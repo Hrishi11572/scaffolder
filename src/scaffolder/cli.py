@@ -1,7 +1,7 @@
 import typer  # type: ignore
-from extractor import extract_structure
-from generator import generator
-from parser import parse_structure
+from .extractor import extract_structure
+from .generator import generator
+from .parser import parse_structure
 from pathlib import Path 
 
 

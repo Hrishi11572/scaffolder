@@ -1,6 +1,6 @@
-from extractor import extract_structure
-from parser import parse_structure
-from generator import generator
+from scaffolder.extractor import extract_structure
+from scaffolder.parser import parse_structure
+from scaffolder.generator import generator
 
 MARKDOWN = """
 # Project

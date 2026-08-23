@@ -1,4 +1,4 @@
-from model import Node, NodeType
+from .model import Node, NodeType
 
 def parse_structure(text):
     '''
