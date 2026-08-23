@@ -17,6 +17,13 @@ def build(markdown_file: str, target: str, templates : str | None = None):
         
     markdown = markdown_path.read_text()
     
+    # added support to prevent overwriting a project directory 
+    target_path = Path(target)
+    if target_path.exists() and any(target_path.iterdir()):
+        raise typer.BadParameter(
+        f"Target directory '{target}' is not empty."
+    )
+    
     structure = extract_structure(markdown)
     
     # error handling here 
