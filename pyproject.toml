@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scaffolder"
-version = "0.1.0"
+version = "0.1.1"
 description = "A CLI tool for generating project structures from Markdown"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "typer",
+    "typer>=0.27.1,<1.0"
 ]
 authors = [
     { name = "Hrishikesh" }
