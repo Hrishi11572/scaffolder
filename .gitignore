@@ -5,3 +5,4 @@ projenv/
 .buildenv/
 dist/
 .coverage 
+testenv/
