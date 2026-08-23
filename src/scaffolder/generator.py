@@ -3,7 +3,7 @@ from .model import Node, NodeType
 from .templates import get_template
 
 def generator(root : Node, target, template_dir=None): 
-    root_path = Path(target)
+    root_path = Path(target) / root.name
     
     if root.type == NodeType.DIRECTORY: 
         root_path.mkdir(parents=True, exist_ok=True)
@@ -17,5 +17,4 @@ def generator(root : Node, target, template_dir=None):
         
         
     for child in root.children: 
-        node_path = root_path /  child.name
-        generator(child, node_path, template_dir)
+        generator(child, root_path, template_dir)
