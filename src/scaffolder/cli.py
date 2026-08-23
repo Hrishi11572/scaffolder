@@ -9,7 +9,8 @@ def build(
     markdown_file: str,
     target: str,
     templates : str | None = None,
-    dry_run : bool = False
+    dry_run : bool = False, 
+    force : bool = False 
 ):
     
     markdown_path = Path(markdown_file)
@@ -24,9 +25,10 @@ def build(
     
     # added support to prevent overwriting a project directory 
     target_path = Path(target)
-    if target_path.exists() and any(target_path.iterdir()):
+    if target_path.exists() and any(target_path.iterdir()) and not force:
         raise typer.BadParameter(
-        f"Target directory '{target}' is not empty."
+        f"Target directory '{target}' is not empty. "
+        "Use --force to continue"
     )
     
     structure = extract_structure(markdown)
