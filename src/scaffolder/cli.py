@@ -47,7 +47,8 @@ def build(
     
     
     if dry_run: 
-        root.print_tree()
+        print("Would create : ")
+        root.print_paths(target)
         return 
     
     generator(root, target, templates)

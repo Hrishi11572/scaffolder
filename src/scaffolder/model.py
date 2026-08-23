@@ -1,6 +1,6 @@
 from enum import Enum 
 from dataclasses import dataclass, field 
-
+from pathlib import Path 
 
 class NodeType(Enum): 
     FILE = "file" 
@@ -24,7 +24,15 @@ class Node:
         for child in self.children: 
             child.print_tree(indent + 1) 
         
-        return 
+        return None 
+    
+    def print_paths(self, base_path): 
+        current_path = Path(base_path) / self.name
+        
+        print(current_path)
+        
+        for child in self.children: 
+            child.print_paths(current_path)
 
     
 if __name__ == "__main__": 
