@@ -1,11 +1,11 @@
-# Scaffolder
+# autodir
 
-Scaffolder is a useful Python CLI tool that generates project
+autodir is a useful Python CLI tool that generates project
 directory structures from a Markdown description.
 
 Instead of manually creating directories and empty files, you can
 describe the desired structure in a simple Markdown-style tree and let
-Scaffolder create it automatically.
+autodir create it automatically.
 
 ## Features
 
@@ -20,16 +20,16 @@ Scaffolder create it automatically.
 
 ## Installation
 
-Install Scaffolder from PyPI:
+Install autodir from PyPI:
 
 ``` bash
-pip install scaffolder
+pip install autodir
 ```
 
 Verify the installation:
 
 ``` bash
-scaffolder --help
+autodir --help
 ```
 
 ## Usage
@@ -37,36 +37,38 @@ scaffolder --help
 The basic command is:
 
 ``` bash
-scaffolder <markdown_file> <target>
+autodir <markdown_file> <target>
 ```
 
 For example:
 
 ``` bash
-scaffolder README.md ./output
+autodir README.md ./output
 ```
 
-Scaffolder reads the structure from `README.md` and creates it inside
+autodir reads the structure from `README.md` and creates it inside
 `./output`.
 
 ## Defining a Project Structure
 
-Create a Markdown file describing the desired project structure:
+The directory structure must be written under a `# Directory Structure` heading in your Markdown file.
 
-``` text
-project/
-    src/
-        main.py
-        utils.cpp
-    tests/
-        test_main.py
-    pyproject.toml
-```
+For example:
+
+    # Directory Structure
+
+    project/
+        src/
+            main.py
+            utils.cpp
+        tests/
+            test_main.py
+        pyproject.toml
 
 Then run:
 
 ``` bash
-scaffolder README.md ./output
+autodir README.md ./output
 ```
 
 The resulting directory will look like:
@@ -84,7 +86,7 @@ output/
 
 ## File Templates
 
-Scaffolder can create starter content for supported file types.
+autodir can create starter content for supported file types.
 
 For example, a Python file is initialized with:
 
@@ -118,25 +120,25 @@ Files without a matching template are created as empty files.
 
 ## Dry Run
 
-Use `--dry-run` to preview what Scaffolder would create without
+Use `--dry-run` to preview what autodir would create without
 modifying the target directory:
 
 ``` bash
-scaffolder README.md ./output --dry-run
+autodir README.md ./output --dry-run
 ```
 
 This is useful for checking a structure before actually generating it.
 
 ## Existing Directories
 
-By default, Scaffolder avoids generating into a non-empty target
+By default, autodir avoids generating into a non-empty target
 directory.
 
 If you intentionally want to generate into an existing non-empty
 directory, use:
 
 ``` bash
-scaffolder README.md ./output --force
+autodir README.md ./output --force
 ```
 
 `--force` allows generation to proceed without deleting unrelated files
@@ -144,7 +146,7 @@ already present in the target directory.
 
 ## Custom Templates
 
-Scaffolder also supports supplying a custom template directory.
+autodir also supports supplying a custom template directory.
 
 A template directory can contain files whose extensions correspond to
 the file types you want to customize.
@@ -158,7 +160,7 @@ templates/
 └── .hpp
 ```
 
-When a matching template is available, Scaffolder uses its contents
+When a matching template is available, autodir uses its contents
 instead of the built-in template.
 
 ## Project Architecture
@@ -166,7 +168,7 @@ instead of the built-in template.
 The project is organized into several components:
 
 ``` text
-src/scaffolder/
+src/autodir/
 ├── cli.py
 ├── extractor.py
 ├── generator.py
@@ -205,8 +207,8 @@ Provides the user-facing command-line interface.
 Clone the repository and create a virtual environment:
 
 ``` bash
-git clone https://github.com/Hrishi11572/scaffolder.git
-cd scaffolder
+git clone https://github.com/Hrishi11572/autodir.git
+cd autodir
 
 python3 -m venv .venv
 source .venv/bin/activate
@@ -227,7 +229,7 @@ python -m pytest
 Run tests with coverage:
 
 ``` bash
-python -m pytest --cov=scaffolder --cov-report=term-missing
+python -m pytest --cov=autodir --cov-report=term-missing
 ```
 
 ## Building the Package
@@ -250,13 +252,13 @@ The generated packages will be placed in:
 dist/
 ```
 
-## Why Scaffolder?
+## Why autodir?
 
 Project setup often involves repetitive work: creating directories,
-adding placeholder files, and writing standard boilerplate. Scaffolder
+adding placeholder files, and writing standard boilerplate. autodir
 separates the description of a project from the process of creating it.
 
-You describe the structure once, and Scaffolder turns that description
+You describe the structure once, and autodir turns that description
 into a real filesystem structure.
 
 ## License
